@@ -101,8 +101,12 @@ var App = (new function() {
 	    		var hasWon = winningDoorNumber == doorNumber;
 	    	
 	    		var text = hasWon ? 'Richtig getippt' : 'Knapp daneben';
-	    		
-		    	user.sendAppEvent('openDoor', { 'door' : doorNumber, 'winningDoor' : winningDoorNumber, 'text' : text });
+
+			    user.getAppContentSession(AppViewMode.Overlay).getAppContent().sendEvent('openDoor', {
+				    'door': doorNumber,
+				    'winningDoor': winningDoorNumber,
+				    'text': text
+			    });
 	    	
 	    		if (hasWon)
 	    		{
