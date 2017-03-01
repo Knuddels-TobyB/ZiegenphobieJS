@@ -5,6 +5,12 @@ var App = (new function() {
     
     var htmlFile = new HTMLFile('start.html');
     var appContent = AppContent.overlayContent(htmlFile, 243, 266);
+
+    this.onAppStart = function() {
+	    KnuddelsServer.getChannel().getOnlineUsers(UserType.Human).forEach(function(user) {
+		    App.onUserJoined(user)
+	    });
+    };
     
     this.onUserJoined = function(user)
     {
